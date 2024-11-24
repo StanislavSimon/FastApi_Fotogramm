@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <style>
+        body {
+            background-color: pink; /* Установка розового фона */
+            font-family: 'Arial', sans-serif; /* Изменение шрифта */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333; /* Цвет заголовка */
+        }
+
+        h2 {
+            color: #555; /* Цвет подзаголовка */
+        }
+
+        a {
+            text-decoration: none; /* Убираем подчеркивание у ссылки */
+            color: white; /* Цвет текста ссылки */
+            background-color: #007BFF; /* Цвет фона ссылки */
+            padding: 10px 15px; /* Отступы вокруг текста */
+            border-radius: 5px; /* Закругление углов */
+            transition: background-color 0.3s; /* Плавный переход цвета */
+        }
+
+        a:hover {
+            background-color: #0056b3; /* Цвет фона при наведении */
+        }
+
+        ul {
+            list-style-type: none; /* Убираем маркеры списка */
+            padding: 0; /* Убираем отступы */
+        }
+
+        li {
+            margin: 10px 0; /* Отступы между элементами списка */
+            display: flex; /* Используем flexbox для выравнивания */
+            align-items: center; /* Центрируем элементы по вертикали */
+        }
+
+        img {
+            margin-right: 10px; /* Отступ между изображением и кнопкой */
+            border-radius: 5px; /* Закругление углов изображения */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для изображения */
+        }
+
+        button {
+            background-color: #dc3545; /* Цвет фона кнопки */
+            color: white; /* Цвет текста кнопки */
+            border: none; /* Убираем рамку */
+            padding: 10px 15px; /* Отступы вокруг текста */
+            border-radius: 5px; /* Закругление углов */
+            cursor: pointer; /* Изменяем курсор при наведении */
+            transition: background-color 0.3s; /* Плавный переход цвета */
+        }
+
+        button:hover {
+            background-color: #c82333; /* Цвет фона кнопки при наведении */
+        }
+
+        p {
+            margin: 0; /* Убираем отступы */
+            font-size: 12px; /* Размер шрифта для отладочной информации */
+            color: #777; /* Цвет текста для отладочной информации */
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать на главную страницу!</h1>
+    <a href="/upload">Загрузить фотографию</a>
+    <h2>Ваши фотографии</h2>
+    <ul>
+    {% for photo in photos %}
+    <li>
+        <img src="{{ photo.url }}" alt="Photo" width="100">
+        <form action="/delete/{{ photo.id }}" method="post">
+            <button type="submit">Удалить</button>
+        </form>
+        <p>Путь к изображению: {{ photo.url }}</p> <!-- Для отладки -->
+    </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
